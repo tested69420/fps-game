@@ -1,11 +1,7 @@
 extends CharacterBody3D
 
-var locked = true
 
-func _ready(): 
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
-const WALK_SPEED = 3.0
+const WALK_SPEED = 4.0
 const SPRINT_SPEED = 7.0
 const JUMP_VELOCITY = 6
 const SENSITIVITY = 0.008
@@ -18,16 +14,23 @@ const AMP = 0.1
 var btick = 0 
 var xrot = 0
 var MouseX = 0
+const HEAD_TILT = .001
 
 #fov shit
 const BASE_FOV = 80.0
 const FOV_CHANGE = 1.5
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var head = $head
 @onready var camera = $head/camera
+	
+var locked = true
+
+func _ready(): 
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 func _unhandled_input(event):
 	
@@ -37,7 +40,6 @@ func _unhandled_input(event):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-			
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
@@ -90,6 +92,10 @@ func _physics_process(delta):
 	var velocity_clamped = clamp(velocity.length(),0.5,SPRINT_SPEED * 2)
 	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
 	camera.fov = lerp(camera.fov,target_fov, delta * 8.0)
+	if direction:
+		camera.rotation.z = lerp(camera.rotation.z,HEAD_TILT * MouseX * speed,delta * 4 )
+	else:
+		camera.rotation.z = 0
 		
 	
 	
