@@ -14,7 +14,6 @@ const AMP = 0.1
 var btick = 0 
 var xrot = 0
 var MouseX = 0
-const HEAD_TILT = .001
 
 #fov shit
 const BASE_FOV = 80.0
@@ -92,10 +91,6 @@ func _physics_process(delta):
 	var velocity_clamped = clamp(velocity.length(),0.5,SPRINT_SPEED * 2)
 	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
 	camera.fov = lerp(camera.fov,target_fov, delta * 8.0)
-	if direction:
-		camera.rotation.z = lerp(camera.rotation.z,HEAD_TILT * MouseX * speed,delta * 4 )
-	else:
-		camera.rotation.z = 0
 		
 	
 	
