@@ -5,9 +5,9 @@ var locked = true
 func _ready(): 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-const WALK_SPEED = 7.0
-const SPRINT_SPEED = 14.0
-const JUMP_VELOCITY = 10
+const WALK_SPEED = 3.0
+const SPRINT_SPEED = 7.0
+const JUMP_VELOCITY = 6
 const SENSITIVITY = 0.008
 
 var speed = WALK_SPEED
