@@ -17,7 +17,7 @@ var MouseX = 0
 
 #fov shit
 const BASE_FOV = 80.0
-const FOV_CHANGE = 1.5
+const FOV_CHANGE = 1.05
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
