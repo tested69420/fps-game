@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://btmfbeeslmike"]
+
+[ext_resource type="Texture2D" uid="uid://cj4fyc1w0oaf4" path="res://SBS - Tiny Texture Pack 512x512 A/Grass/Grass 5 - 512x512.png" id="1_chhoy"]
+
+[resource]
+albedo_texture = ExtResource("1_chhoy")
